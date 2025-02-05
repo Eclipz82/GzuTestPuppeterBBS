@@ -26,7 +26,10 @@ import puppeteer from "puppeteer";
     const executionPickerSelector = '#BBS_ResponsibleForExecution_7f86d46d-1cdc-497e-a4fa-7facda65ad9e_\\$ClientPeoplePicker';
     const checkboxSelector = '#ft-id-1 > li:nth-child(1) > span > span.fancytree-checkbox > input';
     const startButtonSelector = '#stickRibbon > div.right-nav > div:nth-child(1) > button';
-    
+    const fieldPievienotSaskanotaji = '#taskAssignments > form:nth-child(2) > div.d-grid-flex.w-100.svelte-vu5koa > div.d-grid-flex.d-grid-flex-column.w-90.svelte-vu5koa > div.d-grid-flex.grid-cell.svelte-vu5koa > div:nth-child(2) > div > div > div.sv-control.svelte-1kcptsp > div.sv-content.sv-input-row.svelte-1kcptsp > input';
+    const buttonDelete = '#taskAssignments > div:nth-child(5) > div > div.w-5.svelte-13stre5 > img'
+    const buttonNosutit = '#stickRibbon > div.right-nav > div:nth-child(2) > button'
+
     // Переход по селекторам и действия
     await page.waitForSelector(buttonJaunsVienums);
     await page.click(buttonJaunsVienums);
@@ -77,9 +80,22 @@ import puppeteer from "puppeteer";
     await page.waitForSelector(checkboxSelector);
     await page.click(checkboxSelector);
 
-    // Нажимаем кнопку старт
     await page.waitForSelector(startButtonSelector);
     await page.click(startButtonSelector);
+
+    await page.click(buttonDelete)
+    await page.click(buttonDelete)
+    await page.click(buttonDelete)
+  
+    await page.waitForSelector(fieldPievienotSaskanotaji)
+    await page.type(fieldPievienotSaskanotaji, 'Regular clerk 1')
+    await page.keyboard.press("Enter");
+    await page.keyboard.press("Enter");
+   
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    await page.click(buttonNosutit)
+
+
 
     await new Promise(resolve => setTimeout(resolve, 5000));
 
