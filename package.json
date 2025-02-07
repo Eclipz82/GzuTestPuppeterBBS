@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+  "regularClerk": "npx ts-node src/regularClerk.ts",
   "test": "npx ts-node src/test.ts"
   },
   "keywords": [],
