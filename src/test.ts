@@ -41,70 +41,70 @@ import puppeteer from "puppeteer";
     const vietnesSaturs = '#mp1_0_5_Anchor'
 
     // Переход по селекторам и действия
-    // await page.waitForSelector(buttonJaunsVienums);
-    // await page.click(buttonJaunsVienums);
+    await page.waitForSelector(buttonJaunsVienums);
+    await page.click(buttonJaunsVienums);
 
-    // await page.waitForSelector(fieldUznemums);
-    // await page.click(fieldUznemums);
+    await page.waitForSelector(fieldUznemums);
+    await page.click(fieldUznemums);
 
-    // await page.waitForSelector(holdingHeadquaterSelector);
-    // await page.click(holdingHeadquaterSelector);
+    await page.waitForSelector(holdingHeadquaterSelector);
+    await page.click(holdingHeadquaterSelector);
 
-    // await page.waitForSelector(fieldLietasIndekss);
-    // await page.click(fieldLietasIndekss);
+    await page.waitForSelector(fieldLietasIndekss);
+    await page.click(fieldLietasIndekss);
 
-    // await page.waitForSelector(lietasIndekssSelector);
-    // await page.click(lietasIndekssSelector);
+    await page.waitForSelector(lietasIndekssSelector);
+    await page.click(lietasIndekssSelector);
 
-    // await page.waitForSelector(fieldDokumentaPiejamiba);
-    // await page.click(fieldDokumentaPiejamiba);
-    // await page.keyboard.press("ArrowDown");
-    // await page.keyboard.press("Enter");
+    await page.waitForSelector(fieldDokumentaPiejamiba);
+    await page.click(fieldDokumentaPiejamiba);
+    await page.keyboard.press("ArrowDown");
+    await page.keyboard.press("Enter");
 
-    // await page.waitForSelector(fieldPar);
-    // await page.type(fieldPar, "Test");
+    await page.waitForSelector(fieldPar);
+    await page.type(fieldPar, "Test");
 
-    // await page.click(buttonGenerateDokumentu);
+    await page.click(buttonGenerateDokumentu);
 
-    // await new Promise(resolve => setTimeout(resolve, 5000));
+    await new Promise(resolve => setTimeout(resolve, 5000));
 
-    // await page.waitForSelector(fieldParakstisanasVeids);
-    // await page.click(fieldParakstisanasVeids);
-    // await page.keyboard.press("ArrowDown");
-    // await page.keyboard.press("Enter");
+    await page.waitForSelector(fieldParakstisanasVeids);
+    await page.click(fieldParakstisanasVeids);
+    await page.keyboard.press("ArrowDown");
+    await page.keyboard.press("Enter");
 
-    // await page.waitForSelector(fieldIzstradatajs);
-    // await page.click(fieldIzstradatajs);
-    // await page.keyboard.press('Backspace');
-    // await page.type(fieldIzstradatajs, 'Regular Clerk 1');
-    // await page.keyboard.press("Tab");
-    // await page.keyboard.press("Enter");
+    await page.waitForSelector(fieldIzstradatajs);
+    await page.click(fieldIzstradatajs);
+    await page.keyboard.press('Backspace');
+    await page.type(fieldIzstradatajs, 'Regular Clerk 1');
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
 
-    // await page.click(executionPickerSelector);
-    // await page.type(executionPickerSelector, 'Regular Clerk 1');
-    // await page.keyboard.press("Tab");
-    // await page.keyboard.press("Enter");
+    await page.click(executionPickerSelector);
+    await page.type(executionPickerSelector, 'Regular Clerk 1');
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
 
-    // await new Promise(resolve => setTimeout(resolve, 5000));
+    await new Promise(resolve => setTimeout(resolve, 5000));
 
-    // await page.waitForSelector(checkboxSelector);
-    // await page.click(checkboxSelector);
+    await page.waitForSelector(checkboxSelector);
+    await page.click(checkboxSelector);
 
-    // await page.waitForSelector(startButtonSelector);
-    // await page.click(startButtonSelector);
+    await page.waitForSelector(startButtonSelector);
+    await page.click(startButtonSelector);
 
-    // await page.click(buttonDelete)
-    // await page.click(buttonDelete)
-    // await page.click(buttonDelete)
+    await page.click(buttonDelete)
+    await page.click(buttonDelete)
+    await page.click(buttonDelete)
   
-    // await page.waitForSelector(fieldPievienotSaskanotaji)
-    // await page.type(fieldPievienotSaskanotaji, 'Regular clerk 1')
-    // await page.keyboard.press("Enter");
-    // await page.keyboard.press("Enter");
+    await page.waitForSelector(fieldPievienotSaskanotaji)
+    await page.type(fieldPievienotSaskanotaji, 'Regular clerk 1')
+    await page.keyboard.press("Enter");
+    await page.keyboard.press("Enter");
    
-    // await new Promise(resolve => setTimeout(resolve, 5000));
-    // // await page.click(buttonNosutit)
-    // await new Promise(resolve => setTimeout(resolve, 5000));
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    // await page.click(buttonNosutit)
+    await new Promise(resolve => setTimeout(resolve, 5000));
 
     await GotositesUzdevumi();
     await page.waitForSelector(sitesActionMenu)
@@ -114,7 +114,7 @@ import puppeteer from "puppeteer";
 } catch (error) {
     console.error("Find :", error);
 } finally {
-    // await browser.close();
+    await browser.close();
     console.log("Browser is closed");
 }
 
