@@ -8,13 +8,7 @@ import puppeteer from "puppeteer";
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
 
-    async function GotositesUzdevumi() {
-        const urlUzdevumi = "https://bbsproduct05.bbsolutions.lv/sites/uzdevumi/default.aspx";
-        await page.goto(urlUzdevumi);
-        
-    }
-
-    try {
+     try {
     await page.goto(url);
     
     const urlRikojumi = "https://bbsproduct05.bbsolutions.lv/sites/lietvediba/Lists/Rikojumi/AllItems.aspx";
@@ -37,8 +31,8 @@ import puppeteer from "puppeteer";
     const fieldPievienotSaskanotaji = '#taskAssignments > form:nth-child(2) > div.d-grid-flex.w-100.svelte-vu5koa > div.d-grid-flex.d-grid-flex-column.w-90.svelte-vu5koa > div.d-grid-flex.grid-cell.svelte-vu5koa > div:nth-child(2) > div > div > div.sv-control.svelte-1kcptsp > div.sv-content.sv-input-row.svelte-1kcptsp > input';
     const buttonDelete = '#taskAssignments > div:nth-child(5) > div > div.w-5.svelte-13stre5 > img'
     const buttonNosutit = '#stickRibbon > div.right-nav > div:nth-child(2) > button'
-    const sitesActionMenu = '#zz11_SiteActionsMenu_t'
-    const vietnesSaturs = '#mp1_0_5_Anchor'
+    const fieldUznemumsAsterisk = '#wrapper > div.container-fluid > div:nth-child(1) > div.col-sm-12.col-md-12.col-lg-6 > div > div:nth-child(1) > div:nth-child(1) > div > div.ms-h3.ms-standardheader > span';
+ 
 
     // Переход по селекторам и действия
     await page.waitForSelector(buttonJaunsVienums);
@@ -46,6 +40,14 @@ import puppeteer from "puppeteer";
 
     await page.waitForSelector(fieldUznemums);
     await page.click(fieldUznemums);
+
+            // Проверяем, что у поля Uznemums есть звездочка (*), обозначающая обязательность
+            await page.waitForSelector(fieldUznemumsAsterisk);
+            const labelText: string = await page.$eval(fieldUznemumsAsterisk, (el) => el?.textContent?.trim() || "");
+
+            if (!labelText.includes('*')) {
+                throw new Error("Ошибка: Поле 'Uznemums' должно быть обязательным, но отсутствует звездочка (*).");
+            }
 
     await page.waitForSelector(holdingHeadquaterSelector);
     await page.click(holdingHeadquaterSelector);
@@ -106,11 +108,7 @@ import puppeteer from "puppeteer";
     // await page.click(buttonNosutit)
     await new Promise(resolve => setTimeout(resolve, 5000));
 
-    await GotositesUzdevumi();
-    await page.waitForSelector(sitesActionMenu)
-    await page.click(sitesActionMenu)
-    await page.waitForSelector(vietnesSaturs)
-    await page.click(vietnesSaturs)
+
 } catch (error) {
     console.error("Find :", error);
 } finally {
