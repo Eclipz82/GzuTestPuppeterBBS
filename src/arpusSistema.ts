@@ -13,7 +13,6 @@ import puppeteer from "puppeteer";
     
     const urlRikojumi = "https://bbsproduct05.bbsolutions.lv/sites/lietvediba/Lists/Rikojumi/AllItems.aspx";
     await page.goto(urlRikojumi);
-    
     // Селекторы
     const requiredMark = {
         uznemums: '#wrapper > div.container-fluid > div:nth-child(1) > div.col-sm-12.col-md-12.col-lg-6 > div > div:nth-child(1) > div:nth-child(1) > div > div.ms-h3.ms-standardheader > span',
@@ -34,6 +33,11 @@ import puppeteer from "puppeteer";
         atbildigaisParRikojumuIzpildi: '#wrapper > div.container-fluid > div:nth-child(1) > div:nth-child(3) > div > div > div:nth-child(1) > div > div > div.field-card__inner.svelte-fmmd3u > div > div > span > span'
 
     };
+    const fieldRikojumuDatums = '#\\39 399mn5bxgs_dateInput';
+    const buttonRegister = '#stickRibbon > div.right-nav > div:nth-child(4) > button';
+    const fieldSaskanotaji = "#BBS_WF_Approvers_a7610885-a957-441b-a5ca-3eaacddbc483_\\$ClientPeoplePicker";
+    const fiedVizetaji = "#BBS_WF_Reconciliators_09779ee8-ff93-452a-b38b-83c3a408bad0_\\$ClientPeoplePicker";
+    const fieldParakstitaji = '#BBS_WF_Signers_ed0cbbeb-0fea-4b6e-8f95-b4384adf9c4a_\\$ClientPeoplePicker';
     const errorSelectorPAR = "#wrapper > div.container-fluid > div:nth-child(1) > div.col-sm-12.col-md-12.col-lg-6 > div > div:nth-child(2) > div:nth-child(1) > div > div.field-card__inner.svelte-fmmd3u > span";
     const buttonSaglabat = '#stickRibbon > div.right-nav > div:nth-child(5) > button';
     const buttonJaunsVienums = "#idHomePageNewItem";
@@ -46,7 +50,7 @@ import puppeteer from "puppeteer";
     const buttonGenerateDokumentu = '#stickRibbon > div.left-nav > div > button';
     const fieldParakstisanasVeids = '#wrapper > div.container-fluid > div:nth-child(1) > div:nth-child(2) > div > div > div:nth-child(1) > div > div.field-card__inner.svelte-fmmd3u > select';
     const fieldIzstradatajs = '#BBS_WF_ResponsiblePerson_8898caa6-cdd6-4cb8-8f28-b8fcc81f11f6_\\$ClientPeoplePicker';
-    const executionPickerSelector = '#BBS_ResponsibleForExecution_7f86d46d-1cdc-497e-a4fa-7facda65ad9e_\\$ClientPeoplePicker';
+    const executionPickerSelector = "#BBS_ResponsibleForExecution_7f86d46d-1cdc-497e-a4fa-7facda65ad9e_\\$ClientPeoplePicker";
     const checkboxSelector = '#ft-id-1 > li:nth-child(1) > span > span.fancytree-checkbox > input';
     const startButtonSelector = '#stickRibbon > div.right-nav > div:nth-child(1) > button';
     const fieldPievienotSaskanotaji = '#taskAssignments > form:nth-child(2) > div.d-grid-flex.w-100.svelte-vu5koa > div.d-grid-flex.d-grid-flex-column.w-90.svelte-vu5koa > div.d-grid-flex.grid-cell.svelte-vu5koa > div:nth-child(2) > div > div > div.sv-control.svelte-1kcptsp > div.sv-content.sv-input-row.svelte-1kcptsp > input';
@@ -90,67 +94,94 @@ import puppeteer from "puppeteer";
     await new Promise(resolve => setTimeout(resolve, 5000));
     
     
-    // await page.waitForSelector(fieldUznemums);
-    // await page.click(fieldUznemums);
+    await page.waitForSelector(fieldUznemums);
+    await page.click(fieldUznemums);
 
-    // await page.waitForSelector(holdingHeadquaterSelector);
-    // await page.click(holdingHeadquaterSelector);
+    await page.waitForSelector(holdingHeadquaterSelector);
+    await page.click(holdingHeadquaterSelector);
 
-    // await page.waitForSelector(fieldLietasIndekss);
-    // await page.click(fieldLietasIndekss);
+    await page.waitForSelector(fieldLietasIndekss);
+    await page.click(fieldLietasIndekss);
 
-    // await page.waitForSelector(lietasIndekssSelector);
-    // await page.click(lietasIndekssSelector);
+    await page.waitForSelector(lietasIndekssSelector);
+    await page.click(lietasIndekssSelector);
 
-    // await page.waitForSelector(fieldDokumentaPiejamiba);
-    // await page.click(fieldDokumentaPiejamiba);
-    // await page.keyboard.press("ArrowDown");
-    // await page.keyboard.press("Enter");
+    await page.waitForSelector(fieldDokumentaPiejamiba);
+    await page.click(fieldDokumentaPiejamiba);
+    await page.keyboard.press("ArrowDown");
+    await page.keyboard.press("Enter");
 
-    // await page.waitForSelector(fieldPar);
-    // await page.type(fieldPar, "Test");
+    await page.waitForSelector(fieldPar);
+    await page.type(fieldPar, "Test");
 
-    // await page.click(buttonGenerateDokumentu);
+    await page.click(buttonGenerateDokumentu);
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    await page.waitForSelector(fieldParakstisanasVeids);
+    await page.click(fieldParakstisanasVeids);
+    await page.keyboard.press("ArrowDown");
+    await page.keyboard.press("ArrowDown");
+    await page.keyboard.press("Enter");
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    await page.waitForSelector(fieldIzstradatajs);
+    await page.click(fieldIzstradatajs);
+    await page.keyboard.press('Backspace');
+    await page.type(fieldIzstradatajs, 'Regular Clerk 1');
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
+
+    await page.waitForSelector(fieldSaskanotaji);
+    await page.click(fieldSaskanotaji);
+    await page.type(fieldSaskanotaji, 'Regular Clerk 1');
+    await page.keyboard.press("Tab");
+
+    
+    await page.waitForSelector(fiedVizetaji);
+    await page.click(fiedVizetaji);
+    await page.type(fiedVizetaji, 'Regular Clerk 1');
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
+
+    
+    await page.waitForSelector(fieldParakstitaji);
+    await page.click(fieldParakstitaji);
+    await page.type(fieldParakstitaji, 'Regular Clerk 1');
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    
+    await page.click(executionPickerSelector);
+    await page.type(executionPickerSelector, 'Regular Clerk 1');
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    await page.waitForSelector(checkboxSelector);
+    await page.click(checkboxSelector);
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    // await page.waitForSelector(fieldRikojumuDatums); //TODO
+    // await page.click(fieldRikojumuDatums);
+    // const today = new Date().toISOString().split('T')[0];
+
+    // // Вводим дату
+    // await page.type(fieldRikojumuDatums, today);
+
+    // console.log(`Введена дата: ${today}`);
 
     // await new Promise(resolve => setTimeout(resolve, 5000));
 
-    // await page.waitForSelector(fieldParakstisanasVeids);
-    // await page.click(fieldParakstisanasVeids);
-    // await page.keyboard.press("ArrowDown");
-    // await page.keyboard.press("Enter");
+    // await page.waitForSelector(buttonRegister);
+    // await page.click(buttonRegister);
 
-    // await page.waitForSelector(fieldIzstradatajs);
-    // await page.click(fieldIzstradatajs);
-    // await page.keyboard.press('Backspace');
-    // await page.type(fieldIzstradatajs, 'Regular Clerk 1');
-    // await page.keyboard.press("Tab");
-    // await page.keyboard.press("Enter");
-
-    // await page.click(executionPickerSelector);
-    // await page.type(executionPickerSelector, 'Regular Clerk 1');
-    // await page.keyboard.press("Tab");
-    // await page.keyboard.press("Enter");
-
-    // await new Promise(resolve => setTimeout(resolve, 5000));
-
-    // await page.waitForSelector(checkboxSelector);
-    // await page.click(checkboxSelector);
-
-    // await page.waitForSelector(startButtonSelector);
-    // await page.click(startButtonSelector);
-
-    // await page.click(buttonDelete)
-    // await page.click(buttonDelete)
-    // await page.click(buttonDelete)
-  
-    // await page.waitForSelector(fieldPievienotSaskanotaji)
-    // await page.type(fieldPievienotSaskanotaji, 'Regular clerk 1')
-    // await page.keyboard.press("Enter");
-    // await page.keyboard.press("Enter");
    
-    // await new Promise(resolve => setTimeout(resolve, 5000));
-    // // await page.click(buttonNosutit)
-    // await new Promise(resolve => setTimeout(resolve, 5000));
+    // await new Promise(resolve => setTimeout(resolve, 7000));
 
 
 } catch (error) {
@@ -159,6 +190,4 @@ import puppeteer from "puppeteer";
     await browser.close();
     console.log("Browser is closed");
 }
-
 })();
-
