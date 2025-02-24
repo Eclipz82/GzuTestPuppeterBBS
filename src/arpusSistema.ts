@@ -33,7 +33,7 @@ import puppeteer from "puppeteer";
         atbildigaisParRikojumuIzpildi: '#wrapper > div.container-fluid > div:nth-child(1) > div:nth-child(3) > div > div > div:nth-child(1) > div > div > div.field-card__inner.svelte-fmmd3u > div > div > span > span'
 
     };
-    const fieldRikojumuDatums = '#\\39 399mn5bxgs_dateInput';
+    const fieldRikojumuDatums = "#\\37 6iaiy70p2d_dateInput";
     const buttonRegister = '#stickRibbon > div.right-nav > div:nth-child(4) > button';
     const fieldSaskanotaji = "#BBS_WF_Approvers_a7610885-a957-441b-a5ca-3eaacddbc483_\\$ClientPeoplePicker";
     const fiedVizetaji = "#BBS_WF_Reconciliators_09779ee8-ff93-452a-b38b-83c3a408bad0_\\$ClientPeoplePicker";
@@ -111,6 +111,8 @@ import puppeteer from "puppeteer";
     await page.keyboard.press("ArrowDown");
     await page.keyboard.press("Enter");
 
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
     await page.waitForSelector(fieldPar);
     await page.type(fieldPar, "Test");
 
@@ -120,12 +122,25 @@ import puppeteer from "puppeteer";
 
     await page.waitForSelector(fieldParakstisanasVeids);
     await page.click(fieldParakstisanasVeids);
-    await page.keyboard.press("ArrowDown");
-    await page.keyboard.press("ArrowDown");
-    await page.keyboard.press("Enter");
+    await page.select(fieldParakstisanasVeids, "Ārpus sistēmas");
+
+    // Ждём появления кнопки и поля
+    try {
+      await page.waitForSelector(buttonRegister, { visible: true, timeout: 5000 });
+      console.log("Кнопка зарегистрироваться появилась!");
+    } catch (error) {
+      console.log("Кнопка зарегистрироваться НЕ появилась!");
+    }
 
     await new Promise(resolve => setTimeout(resolve, 5000));
 
+    await page.waitForSelector(fieldDokumentaPiejamiba);
+    await page.click(fieldDokumentaPiejamiba);
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Tab");
+    await page.keyboard.type("24.02.2025");
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
     await page.waitForSelector(fieldIzstradatajs);
     await page.click(fieldIzstradatajs);
     await page.keyboard.press('Backspace');
@@ -166,22 +181,9 @@ import puppeteer from "puppeteer";
 
     await new Promise(resolve => setTimeout(resolve, 5000));
 
-    // await page.waitForSelector(fieldRikojumuDatums); //TODO
-    // await page.click(fieldRikojumuDatums);
-    // const today = new Date().toISOString().split('T')[0];
-
-    // // Вводим дату
-    // await page.type(fieldRikojumuDatums, today);
-
-    // console.log(`Введена дата: ${today}`);
-
-    // await new Promise(resolve => setTimeout(resolve, 5000));
-
-    // await page.waitForSelector(buttonRegister);
-    // await page.click(buttonRegister);
-
-   
-    // await new Promise(resolve => setTimeout(resolve, 7000));
+    await page.waitForSelector(buttonRegister);
+    await page.click(buttonRegister);
+    await new Promise(resolve => setTimeout(resolve, 7000));
 
 
 } catch (error) {
